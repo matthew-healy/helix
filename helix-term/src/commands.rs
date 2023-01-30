@@ -47,7 +47,7 @@ use crate::{
     compositor::{self, Component, Compositor},
     job::Callback,
     keymap::ReverseKeymap,
-    ui::{self, overlay::overlayed, FilePicker, Picker, Popup, Prompt, PromptEvent},
+    ui::{self, overlay::overlayed, FilePicker, Picker, Popup, Prompt, PromptEvent, FileTree},
 };
 
 use crate::job::{self, Jobs};
@@ -443,6 +443,7 @@ impl MappableCommand {
         record_macro, "Record macro",
         replay_macro, "Replay macro",
         command_palette, "Open command palette",
+        open_file_tree, "Open file tree",
     );
 }
 
@@ -2539,6 +2540,13 @@ pub fn command_palette(cx: &mut Context) {
             compositor.push(Box::new(overlayed(picker)));
         },
     ));
+}
+
+pub fn open_file_tree(cx: &mut Context) {
+    cx.callback = Some(Box::new(|compositor, _cx| {
+        let tree = FileTree::new();
+        compositor.push(Box::new(overlayed(tree)));
+    }));
 }
 
 fn last_picker(cx: &mut Context) {

@@ -12,6 +12,7 @@ mod prompt;
 mod spinner;
 mod statusline;
 mod text;
+mod tree;
 
 use crate::compositor::{Component, Compositor};
 use crate::job::{self, Callback};
@@ -20,6 +21,7 @@ pub use editor::EditorView;
 pub use markdown::Markdown;
 pub use menu::Menu;
 pub use picker::{DynamicPicker, FileLocation, FilePicker, Picker};
+pub use tree::FileTree;
 pub use popup::Popup;
 pub use prompt::{Prompt, PromptEvent};
 pub use spinner::{ProgressSpinners, Spinner};
